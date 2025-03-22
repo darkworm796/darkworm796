@@ -1,0 +1,77 @@
+function showForm() {
+    document.getElementById('formContainer').style.display = 'block';
+    document.getElementById('sessionsContainer').style.display = 'none';
+    document.getElementById('instructionsContainer').style.display = 'none';
+    document.getElementById('contactContainer').style.display = 'none';
+}
+
+function showSessions() {
+    document.getElementById('formContainer').style.display = 'none';
+    document.getElementById('sessionsContainer').style.display = 'block';
+    document.getElementById('instructionsContainer').style.display = 'none';
+    document.getElementById('contactContainer').style.display = 'none';
+}
+
+function showInstructions() {
+    document.getElementById('formContainer').style.display = 'none';
+    document.getElementById('sessionsContainer').style.display = 'none';
+    document.getElementById('instructionsContainer').style.display = 'block';
+    document.getElementById('contactContainer').style.display = 'none';
+}
+
+function showContactForm() {
+    document.getElementById('formContainer').style.display = 'none';
+    document.getElementById('sessionsContainer').style.display = 'none';
+    document.getElementById('instructionsContainer').style.display = 'none';
+    document.getElementById('contactContainer').style.display = 'block';
+}
+
+function saveData() {
+    var payload = document.getElementById("payload").value;
+    var lhost = document.getElementById("lhost").value;
+    var lport = document.getElementById("lport").value;
+    var ssh = document.getElementById("ssh").value;
+    var os = document.getElementById("os").value;
+    var encoder = document.getElementById("encoder").value;
+
+    // Validate required fields
+    if (!payload || !lhost || !lport) {
+        alert("Please fill in all required fields.");
+        return;
+    }
+
+    var table = document.getElementById("sessionsTable");
+    var row = table.insertRow(-1);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    var cell5 = row.insertCell(4);
+    var cell6 = row.insertCell(5);
+    var cell7 = row.insertCell(6);
+
+    cell1.innerHTML = payload;
+    cell2.innerHTML = lhost;
+    cell3.innerHTML = lport;
+    cell4.innerHTML = ssh;
+    cell5.innerHTML = os;
+    cell6.innerHTML = encoder;
+    cell7.innerHTML = `
+        <i class="fas fa-edit" onclick="editData(this)"></i>
+        <i class="fas fa-trash" onclick="deleteData(this)"></i>
+    `;
+
+    // You would handle saving the data to a backend here.
+}
+
+function editData(row) {
+    // Implement edit functionality
+    alert("Edit functionality to be implemented.");
+}
+
+function deleteData(row) {
+    // Implement delete functionality
+    var i = row.parentNode.parentNode.rowIndex;
+    document.getElementById("sessionsTable").deleteRow(i);
+    alert("Session deleted.");
+}
