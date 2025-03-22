@@ -3,10 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Free Website</title>
+    <title>Metasploit Management Interface</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
-    <h1>Welcome to My Free Website</h1>
-    <p>This is a simple website hosted on GitHub Pages.</p>
+    <div class="container">
+        <h1><i class="fas fa-tools"></i> Metasploit Management Interface</h1>
+        <div class="toolbar">
+            <a href="#" onclick="showForm()"><i class="fas fa-plus"></i> Add Session</a>
+            <a href="#" onclick="showSessions()"><i class="fas fa-list"></i> View Sessions</a>
+            <a href="https://www.kali.org/get-kali/" target="_blank"><i class="fas fa-download"></i> Download Kali Linux</a>
+            <a href="https://cdimage.kali.org/kali-2025.1a/kali-linux-2025.1a-live-amd64.iso" target="_blank"><i class="fas fa-hdd"></i> Install Kali Linux</a>
+            <a href="https://docs.rapid7.com/metasploit/working-with-payloads/" target="_blank"><i class="fas fa-info-circle"></i> Metasploit Info</a>
+            <a href="https://armur.ai/tutorials/metasploit/metasploit/shell_metasploit/" target="_blank"><i class="fas fa-book"></i> Metasploit Tutorial</a>
+            <a href="#" onclick="showInstructions()"><i class="fas fa-book-open"></i> Install Metasploit</a>
+            <a href="#" onclick="showContactForm()"><i class="fas fa-envelope"></i> Contact Me</a>
+            <a href="https://www.paypal.me/yourdonationlink" target="_blank"><i class="fas fa-donate"></i> Donate</a>
+        </div>
+        <div id="formContainer" style="display: none;">
+            <form id="metasploitForm">
+                <div class="form-group">
+                    <label for="payload">Payload:</label>
+                    <input type="text" id="payload" name="payload" required>
+                </div>
+                <div class="form-group">
+                    <label for="lhost">LHOST:</label>
+                    <input type="text" id="lhost" name="lhost" required>
+                </div>
+                <div class="form-group">
+                    <label for="lport">LPORT:</label>
+                    <input type="text" id="lport" name="lport" required>
+                </div>
+                <div class="form-group">
+                    <label for="ssh">Use SSH/SSL:</label>
+                    <select id="ssh" name="ssh">
+                        <option value="none">None</option>
+                        <option value="ssh">SSH</option>
+                        <option value="ssl">SSL</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="os">Operating System:</label>
+                    <select id="os" name="os">
+                        <option value="kali">Kali Linux</option>
+                        <option value="other">Other Linux</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="encoder">Encoder:</label>
+                    <input type="text" id="encoder" name="encoder">
+                </div>
+                <button type="button" onclick="saveData()"><i class="fas fa-save"></i> Save</button>
+            </form>
+        </div>
+        <div id="sessionsContainer" style="display: none;">
+            <h2><i class="fas fa-database"></i> Saved Sessions</h2>
+            <table id="sessionsTable">
+                <tr>
+                    <th>Payload</th>
+                    <th>LHOST</th>
+                    <th>LPORT</th>
+                    <th>SSH/SSL</th>
+                    <th>OS</th>
+                    <th>Encoder</th>
+                    <th>Actions</th>
+                </tr>
+            </table>
+        </div>
+        <div id="instructionsContainer" style="display: none;">
+            <h2><i class="fas fa-book-open"></i> Install Metasploit on Kali Linux</h2>
+            <ol>
+                <li>Update your package list: <code>sudo apt update</code></li>
+                <li>Install Metasploit: <code>sudo apt install metasploit-framework</code></li>
+                <li>Verify the installation: <code>msfconsole</code></li>
+                <li>Refer to the <a href="https://docs.rapid7.com/metasploit/working-with-payloads/" target="_blank">official documentation</a> for more details.</li>
+                <li>Follow this <a href="https://armur.ai/tutorials/metasploit/metasploit/shell_metasploit/" target="_blank">tutorial</a> for using Metasploit payloads and reverse shells.</li>
+            </ol>
+        </div>
+        <div id="contactContainer" style="display: none;">
+            <h2><i class="fas fa-envelope"></i> Contact Me</h2>
+            <form id="contactForm" action="mailto:saveyouresorrow@gmail.com" method="post" enctype="text/plain">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit"><i class="fas fa-paper-plane"></i> Send</button>
+            </form>
+        </div>
+        <footer>
+            <p>This tool is for educational use only. I am not responsible for any misuse of this tool or its components. Please use responsibly. This tool is not intended to cause harm but to educate individuals on cybersecurity. Written and created by Anthony Brandon.</p>
+        </footer>
+    </div>
+    <script src="scripts.js"></script>
 </body>
 </html>
